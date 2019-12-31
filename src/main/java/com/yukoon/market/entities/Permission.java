@@ -3,22 +3,25 @@ package com.yukoon.market.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Accessors(chain = true)
-public class Market {
-
-    @Id
+@Entity
+public class Permission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Id
+    private Integer Id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "PERM_NAME")
+    private String permName;
+
+    @JoinColumn(name = "ROLE_ID")
+    @ManyToOne
+    private Role role;
+
 }
