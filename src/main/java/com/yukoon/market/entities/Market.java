@@ -19,6 +19,6 @@ public class Market {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 }

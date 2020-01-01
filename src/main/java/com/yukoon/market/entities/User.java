@@ -30,12 +30,12 @@ public class User {
     @Setter
     private Integer id;
 
-    @Column(name = "username")
+    @Column(name = "USERNAME")
     @Getter
     @Setter
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "PASSOWRD")
     @Getter
     @Setter
     private String password;
