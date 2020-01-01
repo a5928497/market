@@ -33,6 +33,9 @@ public class EleMeter {
 	@Column(name = "DEGREE_OLD_DATE")
 	private Date degree_old_date;
 
+	@Column(name = "IS_PAID")
+	private Integer is_paid;
+
 	@JoinColumn(name = "TENANT_ID")
 	@ManyToOne
 	private Tenant tenant;

@@ -31,4 +31,8 @@ public class Tenant {
 
     @Column(name = "PHONE_NUMBER")
     private String phone_number;
+
+    @JoinColumn(name = "MARKET_ID")
+    @ManyToOne
+    private Market market;
 }
