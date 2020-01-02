@@ -21,4 +21,7 @@ public class Market {
 
     @Column(name = "NAME")
     private String name;
+
+    @Transient
+    private Integer tenant_number;
 }
