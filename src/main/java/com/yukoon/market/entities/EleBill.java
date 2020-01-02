@@ -9,23 +9,33 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Accessors(chain = true)
-public class EleMeter {
+public class EleBill {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "NAME")
-	private String name;
+	@Column(name = "START_DEGREE")
+	private Float start_degree;
 
-	@Column(name = "DEGREE")
-	private Float degree;
+	@Column(name = "END_DEGREE")
+	private Float end_degree;
 
-	@Column(name = "UPDATE_DATE")
-	private Date update_date;
+	@Column(name = "START_DATE")
+	private Data start_date;
+
+	@Column(name = "END_DATE")
+	private Date end_date;
+
+	@Column(name = "PRICE")
+	private Float price;
+
+	@Column(name = "IS_PAID")
+	private Integer is_paid;
 
 	@JoinColumn(name = "TENANT_ID")
 	@ManyToOne

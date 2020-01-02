@@ -47,14 +47,14 @@
                                 <thead>
                                 <tr>
                                     <th data-hide="all">商家名</th>
-                                    <th data-hide="all">租金</th>
+                                    <th data-hide="all">业主名</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="tenant:${tenants}">
                                     <td th:text="${tenant.name}">ID</td>
-                                    <td th:text="${tenant.rental}">ID</td>
+                                    <td th:text="${tenant.owner}">ID</td>
                                     <td>
                                         <a th:href="@{/tenant/}+${tenant.id}"><button class="btn btn-sm btn-primary">编辑</button></a>
                                     </td>

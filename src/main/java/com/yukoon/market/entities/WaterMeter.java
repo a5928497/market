@@ -21,20 +21,11 @@ public class WaterMeter {
 	@Column(name = "NAME")
 	private String name;
 
-	@Column(name = "DEGREE_NOW")
-	private Float degree_now;
+	@Column(name = "DEGREE")
+	private Float degree;
 
-	@Column(name = "DEGREE_OLD")
-	private Float degree_old;
-
-	@Column(name = "DEGREE_NOW_DATE")
-	private Date degree_now_date;
-
-	@Column(name = "DEGREE_OLD_DATE")
-	private Date degree_old_date;
-
-	@Column(name = "IS_PAID")
-	private Integer is_paid;
+	@Column(name = "UPDATE_DATE")
+	private Date update_date;
 
 	@JoinColumn(name = "TENANT_ID")
 	@ManyToOne
