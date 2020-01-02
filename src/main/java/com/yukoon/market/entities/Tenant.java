@@ -23,6 +23,12 @@ public class Tenant {
     @Column(name = "RENTAL")
     private Float rental;
 
+    @Column(name = "MANAGEMENT_FEES")
+    private Float management_fees;
+
+    @Column(name = "OTHER_FEE")
+    private Float other_fees;
+
     @Column(name = "OWNER")
     private String owner;
 
