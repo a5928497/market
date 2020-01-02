@@ -29,3 +29,6 @@ spring:
       #上传文件大小限制
       max-file-size: 1MB
       max-request-size: 1MB
+  #禁用redis
+  session:
+    store-type: none
