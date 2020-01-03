@@ -55,7 +55,7 @@
                                     <div class="col-sm-10"><input id="rental" name="rental" type="text" th:value="${tenant!=null}?${tenant.rental}" class="form-control"></div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">管理费用</label>
-                                    <div class="col-sm-10"><input id="management_fees" name="management_fees" type="text" th:value="${tenant!=null}?${tenant.management_fees}" class="form-control"></div>
+                                    <div class="col-sm-10"><input id="management_fees" name="management_fees" type="text" th:value="${tenant!=null}?${tenant.management_fees}:0" class="form-control"></div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">其他费用</label>
                                     <div class="col-sm-10"><input id="other_fees" name="other_fees" type="text" th:value="${tenant!=null}?${tenant.other_fees}:0" class="form-control"></div>
@@ -70,9 +70,10 @@
                                     <div class="col-sm-10"><input id="phone_number" name="phone_number" type="text" th:value="${tenant!=null}?${tenant.phone_number}" class="form-control"></div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">所属市场</label>
-                                    <div class="col-sm-10"><select class="form-control m-b" name="marketId">
-                                        <tr th:each="tenant:${tenants}">
-                                            <option th:value="tenant.market.id" th:text="tenant.market.name"></option>
+                                    <div class="col-sm-10"><select class="form-control m-b" name="market.id">
+                                        <tr th:each="market:${markets}">
+                                            <option th:value="${market.id}" th:text="${market.name}"
+                                                    th:selected="${tenant!=null} and ${market.id == tenant.market.id}?selected"></option>
                                         </tr>
                                     </select>
                                     </div>
@@ -80,9 +81,8 @@
                                 <input type="hidden" id="market_id" th:value="${tenant!=null}?${tenant.market.id}:${market_id}" />
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">
-                                        <button th:attr="${tenant!=null}?back_uri = @{/tenants/}+${tenant.market.id}:
-                                        back_uri = @{/tenants/}+${market_id}" th:if="${tenant!=null}"
-                                                class="btn btn-white backBTN" >取消</button>
+                                        <button th:attr="back_uri = @{/tenants/}+${tenant.market.id}" th:if="${tenant!=null}" class="btn btn-white backBTN" >取消</button>
+                                        <button th:attr="back_uri = @{/tenants/}+${market_id}" th:if="${tenant==null}" class="btn btn-white backBTN" >取消</button>
                                         <button class="btn btn-primary" type="submit">保存</button>
                                     </div>
                                 </div>

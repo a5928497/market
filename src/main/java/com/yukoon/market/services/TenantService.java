@@ -16,4 +16,9 @@ public class TenantService {
     public List<Tenant> findAllByMarketId(Integer marketId){
         return tenantRepo.findAllByMarketId(marketId);
     }
+
+    //添加商家
+    public Tenant save(Tenant tenant) {
+        return tenantRepo.save(tenant);
+    }
 }

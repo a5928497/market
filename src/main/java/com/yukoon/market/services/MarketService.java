@@ -31,6 +31,10 @@ public class MarketService {
         marketRepo.delete(id);
     }
 
+    //根据id查找市场
+    public Market findById(Integer id) {
+        return marketRepo.findOne(id);
+    }
     //查询指定id市场下所有商家数
     public List<Market> findAllTenantByMarket() {
         List<Market> markets = findAll();
