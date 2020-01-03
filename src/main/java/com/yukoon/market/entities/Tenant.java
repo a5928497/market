@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @AllArgsConstructor
@@ -37,6 +38,13 @@ public class Tenant {
 
     @Column(name = "PHONE_NUMBER")
     private String phone_number;
+
+    //0=已撤场 1=营业中
+    @Column(name = "STATUS")
+    private Integer status;
+
+    @Column(name = "CHANGE_DATE",columnDefinition = "text")
+    private String change_date;
 
     @JoinColumn(name = "MARKET_ID")
     @ManyToOne

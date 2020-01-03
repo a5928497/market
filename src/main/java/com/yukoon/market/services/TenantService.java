@@ -21,4 +21,9 @@ public class TenantService {
     public Tenant save(Tenant tenant) {
         return tenantRepo.save(tenant);
     }
+
+    //通过id查找商家
+    public Tenant findById(Integer id) {
+        return tenantRepo.findOne(id);
+    }
 }

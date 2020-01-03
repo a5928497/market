@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DashBoard</title>
+
+    <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/footable/2.0.3/css/footable.core.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/logout.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
+    <link th:href="@{/css/backend/tenant_details.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+
+        </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <a th:replace="commons/logout::logout_btn"></a>
+                <h2 th:text="${tenant.name}">管理后台</h2>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <a th:href="@{/tenants/}+${tenant.market.id}"><button type="button" class="btn btn-info">所有商户</button></a>
+            <div class="border"></div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            <h2 style="text-align: center" th:text="${tenant.name}"></h2>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                <tr>
+                                    <th colspan="4">业主姓名</th>
+                                    <th colspan="4">身份证号</th>
+                                    <th colspan="4">电话号码</th>
+                                </tr>
+                                </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th colspan="4" th:text="${tenant.name}"></th>
+                                        <td colspan="4"th:text="${tenant.ID_Card}"></td>
+                                        <td colspan="4"th:text="${tenant.phone_number}"></td>
+                                    </tr>
+                                    </tbody>
+                                    <thead>
+                                    <tr>
+                                        <th colspan="4">每月租金</th>
+                                        <th colspan="4">管理费用</th>
+                                        <th colspan="4">其他费用</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th colspan="4" th:text="${tenant.rental}"></th>
+                                        <td colspan="4" th:text="${tenant.management_fees}"></td>
+                                        <td colspan="4" th:text="${tenant.other_fees}"></td>
+                                    </tr>
+                                    </tbody>
+                                    <thead>
+                                    <tr>
+                                        <th colspan="12">进出场时间</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th colspan="12" th:text="${tenant.change_date}"></th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div id="btn_contant">
+                                    <a th:href="@{/tenant_details/}+${tenant.id}"><button class="btn btn-md btn-warning">编辑</button></a>
+                                    <a th:href="@{/tenant_details/}+${tenant.id}"><button class="btn btn-md btn-danger">撤场</button></a>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Mainly scripts -->
+<script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>
