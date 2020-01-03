@@ -32,6 +32,6 @@ public class EleMeter {
 	private Tenant tenant;
 
 	@JoinColumn(name = "MARKET_ID")
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@ManyToOne
 	private Market market;
 }
