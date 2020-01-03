@@ -50,7 +50,7 @@
                                 </thead>
                                     <tbody>
                                     <tr>
-                                        <th colspan="4" th:text="${tenant.name}"></th>
+                                        <th colspan="4" th:text="${tenant.owner}"></th>
                                         <td colspan="4"th:text="${tenant.ID_Card}"></td>
                                         <td colspan="4"th:text="${tenant.phone_number}"></td>
                                     </tr>
@@ -81,8 +81,9 @@
                                     </tbody>
                                 </table>
                                 <div id="btn_contant">
-                                    <a th:href="@{/tenant_details/}+${tenant.id}"><button class="btn btn-md btn-warning">编辑</button></a>
-                                    <a th:href="@{/tenant_details/}+${tenant.id}"><button class="btn btn-md btn-danger">撤场</button></a>
+                                    <a th:href="@{/tenantedit/}+${tenant.id}"><button class="btn btn-md btn-warning">编辑</button></a>
+                                    <a th:href="@{/tenant_details/}+${tenant.id}"><button class="btn btn-md btn-danger" th:if="${tenant.status==1}">撤场</button></a>
+                                    <a th:href="@{/tenant_details/}+${tenant.id}"><button class="btn btn-md btn-success" th:if="${tenant.status==0}">重新进场</button></a>
                                 </div>
                             </div>
                     </div>
