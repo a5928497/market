@@ -17,6 +17,13 @@ public class TenantController {
     @GetMapping("/tenants/{marketId}")
     public String tenants(@PathVariable("marketId") Integer marketId, Map<String,Object> map) {
         map.put("tenants",tenantService.findAllByMarketId(marketId));
+        map.put("market_id",marketId);
         return "backend/tenants.html";
+    }
+
+    @GetMapping("/tenant/{marketId}")
+    public String toAdd(Map<String,Object> map,@PathVariable("marketId") Integer marketId) {
+        map.put("market_id",marketId);
+        return "backend/tenant_input.html";
     }
 }
