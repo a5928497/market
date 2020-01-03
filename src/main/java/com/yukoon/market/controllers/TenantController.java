@@ -50,7 +50,7 @@ public class TenantController {
 
     //添加商户
     @PostMapping("/tenant")
-    public String add(Map<String,Object> map, Tenant tenant) {
+    public String add(Tenant tenant) {
         tenant.setStatus(1).setChange_date(ENTERTEXT + "1:" + DateFomatter.getDate());
         tenant = tenantService.save(tenant);
         return "redirect:/tenants/" + tenant.getMarket().getId();

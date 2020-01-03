@@ -25,9 +25,13 @@ public class WaterMeter {
 	private Float degree;
 
 	@Column(name = "UPDATE_DATE")
-	private Date update_date;
+	private String update_date;
 
 	@JoinColumn(name = "TENANT_ID")
 	@ManyToOne
 	private Tenant tenant;
+
+	@JoinColumn(name = "MARKET_ID")
+	@ManyToOne
+	private Market market;
 }

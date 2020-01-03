@@ -40,4 +40,8 @@ public class WaterBill {
 	@JoinColumn(name = "TENANT_ID")
 	@ManyToOne
 	private Tenant tenant;
+
+	@JoinColumn(name = "WATERMETER_ID")
+	@ManyToOne
+	private WaterMeter waterMeter;
 }

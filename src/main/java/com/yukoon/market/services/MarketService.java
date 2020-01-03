@@ -23,7 +23,7 @@ public class MarketService {
 
     //添加&编辑市场
     public Market save(Market market) {
-        return marketRepo.save(market);
+        return marketRepo.saveAndFlush(market);
     }
 
     //删除市场

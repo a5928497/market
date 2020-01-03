@@ -40,4 +40,8 @@ public class EleBill {
 	@JoinColumn(name = "TENANT_ID")
 	@ManyToOne
 	private Tenant tenant;
+
+	@JoinColumn(name = "ELEMETER_ID")
+	@ManyToOne
+	private EleMeter eleMeter;
 }

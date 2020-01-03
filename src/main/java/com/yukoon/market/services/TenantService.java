@@ -19,7 +19,7 @@ public class TenantService {
 
     //添加商家
     public Tenant save(Tenant tenant) {
-        return tenantRepo.save(tenant);
+        return tenantRepo.saveAndFlush(tenant);
     }
 
     //通过id查找商家
