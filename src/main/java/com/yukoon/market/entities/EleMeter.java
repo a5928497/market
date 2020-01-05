@@ -27,11 +27,11 @@ public class EleMeter {
 	@Column(name = "UPDATE_DATE")
 	private String update_date;
 
-	@JoinColumn(name = "TENANT_ID")
-	@ManyToOne
-	private Tenant tenant;
-
 	@JoinColumn(name = "MARKET_ID")
 	@ManyToOne
 	private Market market;
+
+	@JoinColumn(name = "TENANT_ID")
+	@ManyToOne
+	private Tenant tenant;
 }
