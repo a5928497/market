@@ -1,5 +1,5 @@
 $(function() {
-    $changeBTN = $("#changeBTN");
+    $changeBTN = $(".changeBTN");
     $tenant_search =$("#tenant_search");
 
     $('.chosen-select').chosen({width: "100%"});

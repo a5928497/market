@@ -65,7 +65,7 @@
                                         <a th:href="@{/tenant_details/}" th:if="${meter.status!=0}">
                                             <button class="btn btn-sm btn-warning">抄表</button>
                                         </a>
-                                        <button th:if="${meter.status!=0}" class="btn btn-sm btn-info" id="changeBTN">更换归属</button>
+                                        <button th:if="${meter.status!=0}" class="btn btn-sm btn-info changeBTN" >更换归属</button>
                                         <a th:href="@{/tenant_details/}">
                                             <button th:class="${meter.status==0}?@{btn btn-sm btn-primary}:@{btn btn-sm btn-danger}"
                                                     th:text="${meter.status==0}?启用:停用">启停
@@ -86,7 +86,7 @@
                             <!--更换商户归属弹窗-->
                             <div class="form-group" id="tenant_search">
                                 <div id="searchbox_container">
-                                    <label class="font-normal">请输入</label>
+                                    <h2 >更改归属商户</h2>
                                     <div>
                                         <select data-placeholder="请选择商户" class="chosen-select" tabindex="2">
                                         </select>
