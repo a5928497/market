@@ -13,10 +13,12 @@
     <link th:href="@{/css/commons/logout.css}" rel="stylesheet">
     <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
+    <link th:href="@{/css/commons/bootstrap-chosen.css}" rel="stylesheet">
+    <link th:href="@{/css/backend/eleMeters.css}" rel="stylesheet">
 
 </head>
 <body>
-    <div id="wrapper">
+<div id="wrapper">
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
 
@@ -28,8 +30,12 @@
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
-            <a th:href="@{/markets}"><button type="button" class="btn btn-primary">返回</button></a>
-            <a th:href="@{/elemeter/}+${market.id}"><button type="button" class="btn btn-info">添加电表</button></a>
+            <a th:href="@{/markets}">
+                <button type="button" class="btn btn-primary">返回</button>
+            </a>
+            <a th:href="@{/elemeter/}+${market.id}">
+                <button type="button" class="btn btn-info">添加电表</button>
+            </a>
             <div class="border"></div>
             <div class="row">
                 <div class="col-lg-12">
@@ -45,6 +51,7 @@
                                     <th data-hide="all">电表名称</th>
                                     <th data-hide="all">记录度数</th>
                                     <th data-hide="all">抄表日期</th>
+                                    <th data-hide="all">归属商户</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -53,8 +60,17 @@
                                     <td th:text="${meter.name}"></td>
                                     <td th:text="${meter.degree}"></td>
                                     <td th:text="${meter.update_date}"></td>
+                                    <td th:text="${meter.tenant!=null}?${meter.tenant.name}:暂无"></td>
                                     <td>
-                                        <a th:href="@{/tenant_details/}"><button class="btn btn-sm btn-primary">编辑</button></a>
+                                        <a th:href="@{/tenant_details/}" th:if="${meter.status!=0}">
+                                            <button class="btn btn-sm btn-warning">抄表</button>
+                                        </a>
+                                        <button th:if="${meter.status!=0}" class="btn btn-sm btn-info" id="changeBTN">更换归属</button>
+                                        <a th:href="@{/tenant_details/}">
+                                            <button th:class="${meter.status==0}?@{btn btn-sm btn-primary}:@{btn btn-sm btn-danger}"
+                                                    th:text="${meter.status==0}?启用:停用">启停
+                                            </button>
+                                        </a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -66,6 +82,17 @@
                                 </tr>
                                 </tfoot>
                             </table>
+
+                            <!--更换商户归属弹窗-->
+                            <div class="form-group" id="tenant_search">
+                                <div id="searchbox_container">
+                                    <label class="font-normal">请输入</label>
+                                    <div>
+                                        <select data-placeholder="请选择商户" class="chosen-select" tabindex="2">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -79,6 +106,8 @@
 <!-- Mainly scripts -->
 <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/commons/chosen.jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/backend/eleMeters.js}"></script>
 
 </body>
 

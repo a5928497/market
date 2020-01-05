@@ -35,7 +35,7 @@ public class EleMeterController {
 
     @PostMapping("/elemeter")
     public String add(EleMeter eleMeter) {
-        eleMeter.setUpdate_date(DateFomatter.getDate());
+        eleMeter.setUpdate_date(DateFomatter.getDate()).setStatus(1);
         eleMeter = eleMeterService.save(eleMeter);
         return "redirect:/elemeters/" + eleMeter.getMarket().getId();
     }

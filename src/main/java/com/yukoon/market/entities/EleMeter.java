@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @NoArgsConstructor
@@ -27,11 +26,15 @@ public class EleMeter {
 	@Column(name = "UPDATE_DATE")
 	private String update_date;
 
+	//0停用 1启用
+	@Column(name = "STATUS")
+	private Integer status;
+
 	@JoinColumn(name = "MARKET_ID")
 	@ManyToOne
 	private Market market;
 
-	@JoinColumn(name = "TENANT_ID")
+	@JoinColumn(nullable = true, name = "TENANT_ID")
 	@ManyToOne
 	private Tenant tenant;
 }
