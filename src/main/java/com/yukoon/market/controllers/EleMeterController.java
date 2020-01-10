@@ -73,4 +73,11 @@ public class EleMeterController {
         EleMeter eleMeter = eleMeterService.save(eleMeterService.findById(id).setStatus(1));
         return "redirect:/elemeters/" + eleMeter.getMarket().getId();
     }
+
+    //抄表读数
+    @PutMapping("/uploaddegree")
+    public String uploadDegree(EleMeter eleMeter) {
+        eleMeter = eleMeterService.save(eleMeter);
+        return "redirect:/elemeters/" + eleMeter.getMarket().getId();
+    }
 }

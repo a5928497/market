@@ -1,4 +1,4 @@
-#tenant_search {
+.popup {
     display: none;
     position: fixed; /* 固定定位 */
     z-index: 1; /* 设置在顶层 */
@@ -10,7 +10,7 @@
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
 }
-#tenant_search h2 {
+.popup h2 {
     text-align: center;
 }
 #searchbox_container{
