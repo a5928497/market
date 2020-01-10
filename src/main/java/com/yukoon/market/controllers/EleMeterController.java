@@ -59,4 +59,18 @@ public class EleMeterController {
         eleMeter = eleMeterService.save(eleMeter.setTenant(tenantService.findById(tenantId)));
         return "redirect:/elemeters/" + eleMeter.getMarket().getId();
     }
+
+    //停用电表
+    @GetMapping("/stopelemeter/{id}")
+    public String stop(@PathVariable("id")Integer id) {
+        EleMeter eleMeter = eleMeterService.save(eleMeterService.findById(id).setStatus(0));
+        return "redirect:/elemeters/" + eleMeter.getMarket().getId();
+    }
+
+    //启用电表
+    @GetMapping("/runelemeter/{id}")
+    public String run(@PathVariable("id")Integer id) {
+        EleMeter eleMeter = eleMeterService.save(eleMeterService.findById(id).setStatus(1));
+        return "redirect:/elemeters/" + eleMeter.getMarket().getId();
+    }
 }
