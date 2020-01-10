@@ -1,14 +1,14 @@
 package com.yukoon.market.controllers;
 
 import com.yukoon.market.entities.EleMeter;
+import com.yukoon.market.entities.Market;
 import com.yukoon.market.services.EleMeterService;
 import com.yukoon.market.services.MarketService;
+import com.yukoon.market.services.TenantService;
 import com.yukoon.market.utils.DateFomatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -18,12 +18,25 @@ public class EleMeterController {
     private EleMeterService eleMeterService;
     @Autowired
     private MarketService marketService;
+    @Autowired
+    private TenantService tenantService;
+
+    //获取Market对象
+    @ModelAttribute
+    public void getMeter(@RequestParam(value = "id",required = false)Integer id, Map<String,Object> map) {
+        //若为修改
+        if (id !=null) {
+            EleMeter eleMeter = eleMeterService.findById(id);
+            map.put("eleMeter",eleMeter);
+        }
+    }
 
     //查询某一市场下所有电表
     @GetMapping("/elemeters/{marketId}")
     public String findAll(Map<String,Object>map,@PathVariable("marketId") Integer marketId) {
         map.put("meters",eleMeterService.findAllByMarketId(marketId));
         map.put("market",marketService.findById(marketId));
+        map.put("tenants",tenantService.findAllByMarketId(marketId));
         return "backend/eleMeters.html";
     }
 
@@ -37,6 +50,13 @@ public class EleMeterController {
     public String add(EleMeter eleMeter) {
         eleMeter.setUpdate_date(DateFomatter.getDate()).setStatus(1);
         eleMeter = eleMeterService.save(eleMeter);
+        return "redirect:/elemeters/" + eleMeter.getMarket().getId();
+    }
+
+    //更改电表归属
+    @PutMapping("/eleowner")
+    public String changeOwner(EleMeter eleMeter,Integer tenantId) {
+        eleMeter = eleMeterService.save(eleMeter.setTenant(tenantService.findById(tenantId)));
         return "redirect:/elemeters/" + eleMeter.getMarket().getId();
     }
 }

@@ -16,7 +16,7 @@ public class MarketController {
 
     //获取Market对象
     @ModelAttribute
-    public void getTenant(@RequestParam(value = "id",required = false)Integer id, Map<String,Object> map) {
+    public void getMarket(@RequestParam(value = "id",required = false)Integer id, Map<String,Object> map) {
         //若为修改
         if (id !=null) {
             Market market = marketService.findById(id);
