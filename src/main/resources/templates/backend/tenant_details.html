@@ -46,6 +46,7 @@
                                     <th colspan="4">业主姓名</th>
                                     <th colspan="4">身份证号</th>
                                     <th colspan="4">电话号码</th>
+                                    <th colspan="4">每月租金</th>
                                 </tr>
                                 </thead>
                                     <tbody>
@@ -53,30 +54,33 @@
                                         <th colspan="4" th:text="${tenant.owner}"></th>
                                         <td colspan="4"th:text="${tenant.ID_Card}"></td>
                                         <td colspan="4"th:text="${tenant.phone_number}"></td>
+                                        <th colspan="4" th:text="${tenant.rental}"></th>
                                     </tr>
                                     </tbody>
                                     <thead>
                                     <tr>
-                                        <th colspan="4">每月租金</th>
+                                        <th colspan="4">用电计价</th>
+                                        <th colspan="4">用水计价</th>
                                         <th colspan="4">管理费用</th>
                                         <th colspan="4">其他费用</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th colspan="4" th:text="${tenant.rental}"></th>
+                                        <td colspan="4" th:text="${tenant.ele_price}"></td>
+                                        <td colspan="4" th:text="${tenant.water_price}"></td>
                                         <td colspan="4" th:text="${tenant.management_fees}"></td>
                                         <td colspan="4" th:text="${tenant.other_fees}"></td>
                                     </tr>
                                     </tbody>
                                     <thead>
                                     <tr>
-                                        <th colspan="12">进出场时间</th>
+                                        <th colspan="16">进出场时间</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th colspan="12" th:text="${tenant.change_date}"></th>
+                                        <th colspan="16" th:text="${tenant.change_date}"></th>
                                     </tr>
                                     </tbody>
                                 </table>

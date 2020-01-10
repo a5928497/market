@@ -30,6 +30,12 @@ public class Tenant {
     @Column(name = "OTHER_FEE")
     private Float other_fees;
 
+    @Column(name = "ELE_PRICE")
+    private Float ele_price;
+
+    @Column(name = "WATER_PRICE")
+    private Float water_price;
+
     @Column(name = "OWNER")
     private String owner;
 
