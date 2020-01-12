@@ -26,10 +26,10 @@ public class EleBill {
 	private Float end_degree;
 
 	@Column(name = "START_DATE")
-	private Date start_date;
+	private String start_date;
 
 	@Column(name = "END_DATE")
-	private Date end_date;
+	private String end_date;
 
 	@Column(name = "PRICE")
 	private Float price;
