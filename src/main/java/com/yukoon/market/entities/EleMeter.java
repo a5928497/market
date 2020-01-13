@@ -37,4 +37,8 @@ public class EleMeter {
 	@JoinColumn(nullable = true, name = "TENANT_ID")
 	@ManyToOne
 	private Tenant tenant;
+
+	//0表数异常 1成功更改客户 2生成新的欠款
+	@Transient
+	private Integer change_status;
 }

@@ -32,7 +32,10 @@ $(function () {
     $submitBTN.click(function () {
         var $form = $(this).closest("form");
         var url = $form.attr("action");
-        submit(url,$form);
+        submit(url, $form);
+        $tenant_search.hide();
+        $degree_upload.hide();
+        return false;
     });
 
     function submit(url, form) {
@@ -46,7 +49,7 @@ $(function () {
             },
             success: function (data) {
                 $tr = $("tr[meterId=\'" + data.id + "\']");
-                if (null != data) {
+                if (!$.isEmptyObject(data)) {
                     $tr.children().eq(0).text(data.name);
                     $tr.children().eq(1).text(data.degree);
                     $tr.children().eq(2).text(data.update_date);
@@ -54,7 +57,13 @@ $(function () {
                         $tr.children().eq(3).text(data.tenant.name);
                     }
                 } else {
-                    console.log("false");
+                    $tr.children().eq(0).text(data.name);
+                    $tr.children().eq(1).text(data.degree);
+                    $tr.children().eq(2).text(data.update_date);
+                    if (!$.isEmptyObject(data.tenant)) {
+                        $tr.children().eq(3).text(data.tenant.name);
+                    }
+                    alert("更改归属失败，请查询是否未缴清所有款项或联系管理员！");
                 }
             }
         });

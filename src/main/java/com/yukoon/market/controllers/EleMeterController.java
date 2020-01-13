@@ -57,10 +57,24 @@ public class EleMeterController {
     }
 
     //更改电表归属
+    @ResponseBody
     @PutMapping("/eleowner")
-    public String changeOwner(EleMeter eleMeter,Integer tenantId) {
-        eleMeter = eleMeterService.save(eleMeter.setTenant(tenantService.findById(tenantId)));
-        return "redirect:/elemeters/" + eleMeter.getMarket().getId();
+    public EleMeter changeOwner(EleMeter eleMeter,Integer tenantId,float degree_now) {
+        //检查抄表数是否与记录相同或新表
+        if (degree_now == eleMeter.getDegree() || eleMeter.getDegree() == 0) {
+            eleMeter = eleMeterService.save(eleMeter.setTenant(tenantService.findById(tenantId)));
+
+            return eleMeter;
+        }
+        //检查表数是否小于已记录表数
+        else if (degree_now < eleMeter.getDegree()){
+            return null;
+        }
+        //表数检查
+        else{
+            eleBillService.caculate(degree_now,eleMeter.getId());
+            return null;
+        }
     }
 
     //停用电表

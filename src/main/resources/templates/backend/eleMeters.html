@@ -98,6 +98,7 @@
                                                 <option th:each="tenant:${tenants}" th:value="${tenant.id}"
                                                         th:text="${tenant.name}"></option>
                                             </select>
+                                            <div><input name="degree_now" placeholder="请输入当前读数" type="text" class="form-control"></div>
                                             <div class="col-sm-4 col-sm-offset-2">
                                                 <button class="btn btn-white cancelBTN">取消</button>
                                                 <button class="btn btn-primary submitBTN" type="button">提交</button>
