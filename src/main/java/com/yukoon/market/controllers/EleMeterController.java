@@ -2,6 +2,7 @@ package com.yukoon.market.controllers;
 
 import com.yukoon.market.entities.EleMeter;
 import com.yukoon.market.entities.Market;
+import com.yukoon.market.services.EleBillService;
 import com.yukoon.market.services.EleMeterService;
 import com.yukoon.market.services.MarketService;
 import com.yukoon.market.services.TenantService;
@@ -20,6 +21,8 @@ public class EleMeterController {
     private MarketService marketService;
     @Autowired
     private TenantService tenantService;
+    @Autowired
+    private EleBillService eleBillService;
 
     //获取Market对象
     @ModelAttribute
@@ -74,10 +77,11 @@ public class EleMeterController {
         return "redirect:/elemeters/" + eleMeter.getMarket().getId();
     }
 
-    //抄表读数
+    //抄表读数计价
+    @ResponseBody
     @PutMapping("/uploaddegree")
-    public String uploadDegree(EleMeter eleMeter) {
-        eleMeter = eleMeterService.save(eleMeter);
-        return "redirect:/elemeters/" + eleMeter.getMarket().getId();
+    public EleMeter uploadDegree(EleMeter eleMeter,Float degree_now) {
+        eleBillService.caculate(degree_now,eleMeter.getId());
+        return eleMeterService.findById(eleMeter.getId());
     }
 }

@@ -28,6 +28,7 @@ public class EleBillService {
             ele_price = eleMeter.getTenant().getEle_price();
             price = ele_price * (degree_now - degree_old);
         }
+        eleMeter.setDegree(degree_now);
         eleBill.setStart_date(eleMeter.getUpdate_date()).setEnd_date(DateFomatter.getDate())
                 .setStart_degree(degree_old).setEnd_degree(degree_now)
                 .setPrice(price).setIs_paid(0)
