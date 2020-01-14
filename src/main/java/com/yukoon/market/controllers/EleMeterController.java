@@ -24,6 +24,20 @@ public class EleMeterController {
     @Autowired
     private EleBillService eleBillService;
 
+    //meters页面元素
+    private final static String H2_TEXT = "电表管理";
+    private final static String TOADD_URL = "/elemeter/";
+    private final static String ADD_URL = "/elemeter";
+    private final static String H5_TEXT = "电表";
+    private final static String BILLS_URL = "/elebills_m_unpaid/";
+    private final static String RUN_URL = "/runelemeter/";
+    private final static String STOP_URL = "/stopelemeter/";
+    private final static String MODELATTR = "eleMeter";
+    private final static String CHANGE_TENANT_URL = "/eleowner";
+    private final static String DEGREE_UPLOAD_URL = "/uploaddegree";
+    private final static String BACK_URL =  "/elemeters/";
+    //input页面元素
+
     //获取Market对象
     @ModelAttribute
     public void getMeter(@RequestParam(value = "id",required = false)Integer id, Map<String,Object> map) {
@@ -37,6 +51,7 @@ public class EleMeterController {
     //查询某一市场下所有电表
     @GetMapping("/elemeters/{marketId}")
     public String findAll(Map<String,Object>map,@PathVariable("marketId") Integer marketId) {
+        map = metersElementPackage(map);
         map.put("meters",eleMeterService.findAllByMarketId(marketId));
         map.put("market",marketService.findById(marketId));
         map.put("tenants",tenantService.findAllByMarketId(marketId));
@@ -45,6 +60,7 @@ public class EleMeterController {
 
     @GetMapping("/elemeter/{marketId}")
     public String toAdd(Map<String,Object>map,@PathVariable("marketId") Integer marketId) {
+        map = inputElementPackage(map);
         map.put("market_id",marketId);
         return "backend/meter_input.html";
     }
@@ -108,5 +124,18 @@ public class EleMeterController {
         }
         //change_status=0表数异常 1成功更改客户 2生成新的欠款
         return eleMeter;
+    }
+
+    private Map<String,Object> metersElementPackage(Map<String,Object> map) {
+        map.put("h2_text",H2_TEXT);map.put("toadd_url",TOADD_URL);map.put("h5_text",H5_TEXT);
+        map.put("back_url",BACK_URL);map.put("run_url",RUN_URL);map.put("stop_url",STOP_URL);map.put("model_attr",MODELATTR);
+        map.put("change_tenant_url",CHANGE_TENANT_URL);map.put("degree_upload_url",DEGREE_UPLOAD_URL);
+        return map;
+    }
+
+    private Map<String,Object> inputElementPackage(Map<String,Object> map) {
+        map.put("h5_text",H5_TEXT);map.put("add_url",ADD_URL);map.put("model_attr",MODELATTR);
+        map.put("bills_url",BILLS_URL);
+        return map;
     }
 }

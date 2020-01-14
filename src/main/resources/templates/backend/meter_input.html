@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>电表编辑</title>
+    <title>仪表编辑</title>
 
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
@@ -40,11 +40,11 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>电表编辑</h5>
+                            <h5 th:text="${h5_text} + @{编辑}">电表编辑</h5>
                         </div>
                         <div class="ibox-content">
-                            <form action="/elemeter" method="post" modelAttribute="eleMeter" id="inputForm" class="form-horizontal">
-                                <div class="form-group"><label class="col-sm-2 control-label">电表名称</label>
+                            <form th:action="${add_url}" method="post" th:attr="modelAttribute=${model_attr}"  id="inputForm" class="form-horizontal">
+                                <div class="form-group"><label class="col-sm-2 control-label">仪表名称</label>
                                     <div class="col-sm-10"><input name="name" id="name" type="text" th:value="${meter!=null}?${meter.name}" class="form-control"></div>
                                 </div>
                                 <!--若为修改，加入id-->
@@ -64,8 +64,8 @@
                                 <input type="hidden" id="market_id" name="market.id" th:value="${meter!=null}?${meter.market.id}:${market_id}" />
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">
-                                        <button th:attr="back_uri = @{/elemeters/}+${meter.tenant.market.id}" th:if="${meter!=null}" class="btn btn-white backBTN" >取消</button>
-                                        <button th:attr="back_uri = @{/elemeters/}+${market_id}" th:if="${meter==null}" class="btn btn-white backBTN" >取消</button>
+                                        <button th:attr="back_uri = ${bills_url}+${meter.tenant.market.id}" th:if="${meter!=null}" class="btn btn-white backBTN" >取消</button>
+                                        <button th:attr="back_uri = ${bills_url}+${market_id}" th:if="${meter==null}" class="btn btn-white backBTN" >取消</button>
                                         <button class="btn btn-primary" type="submit">保存</button>
                                     </div>
                                 </div>
