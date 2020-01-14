@@ -43,4 +43,14 @@ public class EleBillService {
     public List<EleBill> findAllByMeterId(Integer meterId) {
         return eleBillRepo.findAllByEleMeterId(meterId);
     }
+
+    //查询某一电表下所有未付账单
+    public List<EleBill> findUnpaidByMeterId(Integer meterId) {
+        return eleBillRepo.findUnpaidByEleMeterId(meterId);
+    }
+
+    //查询某一电表下所有已付账单
+    public List<EleBill> findpaidByMeterId(Integer meterId) {
+        return eleBillRepo.findpaidByEleMeterId(meterId);
+    }
 }

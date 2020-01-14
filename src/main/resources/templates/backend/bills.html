@@ -31,14 +31,20 @@
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
-            <a th:href="@{/market}"><button type="button" class="btn btn-primary">添加场所</button></a>
-            <a th:href="@{/allusers}"><button type="button" class="btn btn-info">所有用户</button></a>
+            <!--根据电表查询按钮-->
+            <a th:href="@{/elebills_m_all/}+ ${meter.id}" th:if="${meter != null}"><button type="button" class="btn btn-success">全部</button></a>
+            <a th:href="@{/elebills_m_unpaid/}+ ${meter.id}"><button type="button" class="btn btn-danger" th:if="${query_status != 1}">未支付</button></a>
+            <a th:href="@{/elebills_m_paid/}+ ${meter.id}"><button type="button" class="btn btn-primary" th:if="${query_status != 2}">已支付</button></a>
+            <a th:href="@{/elemeters/} + ${meter.market.id}" th:if="${meter!=null}"><button type="button" class="btn btn-info">返回</button></a>
+            <!--根据租户查询按钮-->
             <div class="border"></div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>账单列表</h5>
+                            <h5 th:if="${query_status == 0}">所有账单列表</h5>
+                            <h5 th:if="${query_status ==1}">未支付账单列表</h5>
+                            <h5 th:if="${query_status ==2}">已支付账单列表</h5>
                         </div>
                         <div class="ibox-content">
 
@@ -61,11 +67,7 @@
                                     <td th:text="${bill.price}">price</td>
                                     <td th:text="${bill.is_paid == 0}?未支付:已支付">is_paid</td>
                                     <td>
-                                        <a th:href="@{/market/}+${bill.id}"><button class="btn btn-sm">编辑</button></a>
-                                        <a th:href="@{/tenants/}+${bill.id}"><button class="btn btn-sm btn-primary">租户管理</button></a>
-                                        <a th:href="@{/elemeters/}+${bill.id}"><button class="btn btn-sm btn-warning">电表管理</button></a>
-                                        <a th:href="@{/tenants/}+${bill.id}"><button class="btn btn-sm btn-success">水表管理</button></a>
-                                        <a th:href="@{/tenants/}+${bill.id}"><button class="btn btn-sm btn-danger">账单管理</button></a>
+                                        <a th:href="@{/market/}+${bill.id}"><button class="btn btn-sm">详情</button></a>
                                     </td>
                                 </tr>
                                 </tbody>
