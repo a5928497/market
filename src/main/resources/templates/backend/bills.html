@@ -67,7 +67,7 @@
                                     <td th:text="${bill.price}">price</td>
                                     <td th:text="${bill.is_paid == 0}?未支付:已支付">is_paid</td>
                                     <td>
-                                        <a th:href="@{/market/}+${bill.id}"><button class="btn btn-sm">详情</button></a>
+                                        <a th:href="@{/elebill/}+${bill.id}" target="_blank"><button class="btn btn-sm">详情</button></a>
                                     </td>
                                 </tr>
                                 </tbody>

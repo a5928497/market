@@ -53,4 +53,9 @@ public class EleBillService {
     public List<EleBill> findpaidByMeterId(Integer meterId) {
         return eleBillRepo.findpaidByEleMeterId(meterId);
     }
+
+    //根据ID查找单张账单
+    public EleBill findById(Integer billId) {
+        return eleBillRepo.findOne(billId);
+    }
 }

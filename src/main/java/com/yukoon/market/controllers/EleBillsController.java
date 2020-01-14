@@ -50,4 +50,11 @@ public class EleBillsController {
         map.put("meter",eleMeterService.findById(meterId));
         return "backend/bills.html";
     }
+
+    //查询某一账单详情
+    @GetMapping("/elebill/{billId}")
+    public String findDetailsByBillId(@PathVariable("billId")Integer billId,Map<String,Object> map ) {
+        map.put("bill",eleBillService.findById(billId));
+        return "backend/bill_details.html";
+    }
 }

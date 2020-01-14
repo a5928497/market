@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tenant_Details</title>
+    <title>Bill_Details</title>
 
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
@@ -13,7 +13,7 @@
     <link th:href="@{/css/commons/logout.css}" rel="stylesheet">
     <link th:href="@{/css/commons/animate.min.css}" rel="stylesheet">
     <link th:href="@{/css/commons/style.min.css}" rel="stylesheet">
-    <link th:href="@{/css/backend/tenant_details.css}" rel="stylesheet">
+    <link th:href="@{/css/backend/bill_details.css}" rel="stylesheet">
 
 </head>
 
@@ -28,66 +28,59 @@
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
                 <a th:replace="commons/logout::logout_btn"></a>
-                <h2 th:text="${tenant.name}">管理后台</h2>
+                <h2>账单详情</h2>
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
-            <a th:href="@{/tenants/}+${tenant.market.id}"><button type="button" class="btn btn-info">所有商户</button></a>
             <div class="border"></div>
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-16">
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
-                            <h2 style="text-align: center" th:text="${tenant.name}"></h2>
+                            <h2 style="text-align: center">费用详情</h2>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                 <tr>
-                                    <th colspan="4">业主姓名</th>
-                                    <th colspan="4">身份证号</th>
-                                    <th colspan="4">电话号码</th>
-                                    <th colspan="4">每月租金</th>
+                                    <th colspan="4">账单归属</th>
+                                    <th colspan="4">仪表名称</th>
+                                    <th colspan="4">总计度数</th>
+                                    <th colspan="4">账单金额</th>
                                 </tr>
                                 </thead>
                                     <tbody>
                                     <tr>
-                                        <th colspan="4" th:text="${tenant.owner}"></th>
-                                        <td colspan="4"th:text="${tenant.ID_Card}"></td>
-                                        <td colspan="4"th:text="${tenant.phone_number}"></td>
-                                        <th colspan="4" th:text="${tenant.rental}"></th>
+                                        <th colspan="4" th:text="${bill.tenant != null}?${bill.tenant.name}:损耗"></th>
+                                        <td colspan="4"th:text="${bill.eleMeter.name}"></td>
+                                        <td colspan="4"th:text="${bill.end_degree - bill.start_degree}"></td>
+                                        <th colspan="4" th:text="${bill.price}"></th>
                                     </tr>
                                     </tbody>
                                     <thead>
                                     <tr>
-                                        <th colspan="4">用电计价</th>
-                                        <th colspan="4">用水计价</th>
-                                        <th colspan="4">管理费用</th>
-                                        <th colspan="4">其他费用</th>
+                                        <th colspan="8">度数区间</th>
+                                        <th colspan="8">计价期间</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td colspan="4" th:text="${tenant.ele_price}"></td>
-                                        <td colspan="4" th:text="${tenant.water_price}"></td>
-                                        <td colspan="4" th:text="${tenant.management_fees}"></td>
-                                        <td colspan="4" th:text="${tenant.other_fees}"></td>
+                                        <th colspan="8" th:text="${bill.start_degree} + @{至} + ${bill.end_degree}"></th>
+                                        <th colspan="8" th:text="${bill.start_date} + @{至} + ${bill.end_date}"></th>
                                     </tr>
                                     </tbody>
                                     <thead>
                                     <tr>
-                                        <th colspan="16">进出场时间</th>
+                                        <th colspan="16">支付状态</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th colspan="16" th:text="${tenant.change_date}"></th>
+                                        <th colspan="16" th:style="${bill.is_paid !=1}?'color:red':'color:green'" th:text="${bill.is_paid !=1}?未支付:已支付"></th>
                                     </tr>
                                     </tbody>
                                 </table>
                                 <div id="btn_contant">
-                                    <a th:href="@{/tenantedit/}+${tenant.id}"><button class="btn btn-md btn-warning">编辑</button></a>
-                                    <a th:href="@{/tenant_details/}+${tenant.id}"><button class="btn btn-md btn-danger" th:if="${tenant.status==1}">撤场</button></a>
-                                    <a th:href="@{/tenant_details/}+${tenant.id}"><button class="btn btn-md btn-success" th:if="${tenant.status==0}">重新进场</button></a>
+                                    <a th:href="@{/tenantedit/}"><button class="btn btn-md btn-warning">编辑</button></a>
                                 </div>
                             </div>
                     </div>
