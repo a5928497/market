@@ -48,22 +48,22 @@ $(function () {
                 alert("连接超时！");
             },
             success: function (data) {
+                if ("0" == data.change_status) {
+                    alert("更新失败，仪表读数异常，请重新尝试！");
+                }
+                else if ("1" == data.change_status) {
+                    alert("数据更新成功！")
+                }
+                else
+                {
+                    alert("有未清缴费用，请清缴后重新尝试更改！");
+                }
                 $tr = $("tr[meterId=\'" + data.id + "\']");
-                if (!$.isEmptyObject(data)) {
-                    $tr.children().eq(0).text(data.name);
-                    $tr.children().eq(1).text(data.degree);
-                    $tr.children().eq(2).text(data.update_date);
-                    if (!$.isEmptyObject(data.tenant)) {
-                        $tr.children().eq(3).text(data.tenant.name);
-                    }
-                } else {
-                    $tr.children().eq(0).text(data.name);
-                    $tr.children().eq(1).text(data.degree);
-                    $tr.children().eq(2).text(data.update_date);
-                    if (!$.isEmptyObject(data.tenant)) {
-                        $tr.children().eq(3).text(data.tenant.name);
-                    }
-                    alert("更改归属失败，请查询是否未缴清所有款项或联系管理员！");
+                $tr.children().eq(0).text(data.name);
+                $tr.children().eq(1).text(data.degree);
+                $tr.children().eq(2).text(data.update_date);
+                if (!$.isEmptyObject(data.tenant)) {
+                    $tr.children().eq(3).text(data.tenant.name);
                 }
             }
         });

@@ -63,18 +63,19 @@ public class EleMeterController {
         //检查抄表数是否与记录相同或新表
         if (degree_now == eleMeter.getDegree() || eleMeter.getDegree() == 0) {
             eleMeter = eleMeterService.save(eleMeter.setTenant(tenantService.findById(tenantId)));
-
-            return eleMeter;
+            eleMeter.setChange_status(1);
         }
         //检查表数是否小于已记录表数
         else if (degree_now < eleMeter.getDegree()){
-            return null;
+            eleMeter.setChange_status(0);
         }
         //表数检查
         else{
             eleBillService.caculate(degree_now,eleMeter.getId());
-            return null;
+            eleMeter.setChange_status(2);
         }
+        //change_status=0表数异常 1成功更改客户 2生成新的欠款
+        return eleMeter;
     }
 
     //停用电表
@@ -95,7 +96,13 @@ public class EleMeterController {
     @ResponseBody
     @PutMapping("/uploaddegree")
     public EleMeter uploadDegree(EleMeter eleMeter,Float degree_now) {
-        eleBillService.caculate(degree_now,eleMeter.getId());
-        return eleMeterService.findById(eleMeter.getId());
+        if (degree_now <= eleMeter.getDegree()) {
+            eleMeter.setChange_status(0);
+        }else {
+            eleMeter.setChange_status(2);
+            eleBillService.caculate(degree_now,eleMeter.getId());
+        }
+        //change_status=0表数异常 1成功更改客户 2生成新的欠款
+        return eleMeter;
     }
 }
