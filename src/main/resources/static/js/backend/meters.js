@@ -9,11 +9,8 @@ $(function () {
     $form = $("form")
     //点击取消隐藏所有弹框
     $cancelBTN.click(function () {
-        $tenant_search.hide();
-        $degree_upload.hide();
-        // 清空value
-        $("form").children("input[name='id']").removeAttr("value");
-        return false;
+        init();
+        return false
     })
 
     //点击弹出更改租户弹框
@@ -33,8 +30,7 @@ $(function () {
         var $form = $(this).closest("form");
         var url = $form.attr("action");
         submit(url, $form);
-        $tenant_search.hide();
-        $degree_upload.hide();
+        init();
         return false;
     });
 
@@ -68,5 +64,13 @@ $(function () {
             }
         });
         return false;
+    }
+
+    //初始化输入框
+    function init() {
+        $tenant_search.hide();
+        $degree_upload.hide();
+        // 清空value
+        $("form input").val("");
     }
 })

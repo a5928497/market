@@ -62,8 +62,12 @@ public class EleMeterController {
     public EleMeter changeOwner(EleMeter eleMeter,Integer tenantId,float degree_now) {
         //检查抄表数是否与记录相同或新表
         if (degree_now == eleMeter.getDegree() || eleMeter.getDegree() == 0) {
-            eleMeter = eleMeterService.save(eleMeter.setTenant(tenantService.findById(tenantId)));
-            eleMeter.setUpdate_date(DateFomatter.getDate()).setChange_status(1);
+            if(eleBillService.findUnpaidByMeterId(eleMeter.getId()).size() == 0) {
+                eleMeter = eleMeterService.save(eleMeter.setTenant(tenantService.findById(tenantId)));
+                eleMeter.setUpdate_date(DateFomatter.getDate()).setChange_status(1);
+            }else {
+                eleMeter.setUpdate_date(DateFomatter.getDate()).setChange_status(2);
+            }
         }
         //检查表数是否小于已记录表数
         else if (degree_now < eleMeter.getDegree()){
