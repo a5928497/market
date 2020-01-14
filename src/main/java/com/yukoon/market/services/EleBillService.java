@@ -8,6 +8,8 @@ import com.yukoon.market.utils.DateFomatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EleBillService {
     @Autowired
@@ -35,5 +37,10 @@ public class EleBillService {
                 .setEleMeter(eleMeter);
         eleBill = eleBillRepo.saveAndFlush(eleBill);
         return eleBill;
+    }
+
+    //查询某一电表下所有账单
+    public List<EleBill> findAllByMeterId(Integer meterId) {
+        return eleBillRepo.findAllByEleMeterId(meterId);
     }
 }

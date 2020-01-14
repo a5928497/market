@@ -40,13 +40,13 @@ public class EleMeterController {
         map.put("meters",eleMeterService.findAllByMarketId(marketId));
         map.put("market",marketService.findById(marketId));
         map.put("tenants",tenantService.findAllByMarketId(marketId));
-        return "backend/eleMeters.html";
+        return "backend/meters.html";
     }
 
     @GetMapping("/elemeter/{marketId}")
     public String toAdd(Map<String,Object>map,@PathVariable("marketId") Integer marketId) {
         map.put("market_id",marketId);
-        return "backend/eleMeter_input.html";
+        return "backend/meter_input.html";
     }
 
     @PostMapping("/elemeter")
@@ -63,7 +63,7 @@ public class EleMeterController {
         //检查抄表数是否与记录相同或新表
         if (degree_now == eleMeter.getDegree() || eleMeter.getDegree() == 0) {
             eleMeter = eleMeterService.save(eleMeter.setTenant(tenantService.findById(tenantId)));
-            eleMeter.setChange_status(1);
+            eleMeter.setUpdate_date(DateFomatter.getDate()).setChange_status(1);
         }
         //检查表数是否小于已记录表数
         else if (degree_now < eleMeter.getDegree()){
@@ -71,8 +71,8 @@ public class EleMeterController {
         }
         //表数检查
         else{
+            eleMeter.setUpdate_date(DateFomatter.getDate()).setChange_status(2);
             eleBillService.caculate(degree_now,eleMeter.getId());
-            eleMeter.setChange_status(2);
         }
         //change_status=0表数异常 1成功更改客户 2生成新的欠款
         return eleMeter;
@@ -99,7 +99,7 @@ public class EleMeterController {
         if (degree_now <= eleMeter.getDegree()) {
             eleMeter.setChange_status(0);
         }else {
-            eleMeter.setChange_status(2);
+            eleMeter.setUpdate_date(DateFomatter.getDate()).setChange_status(2);
             eleBillService.caculate(degree_now,eleMeter.getId());
         }
         //change_status=0表数异常 1成功更改客户 2生成新的欠款

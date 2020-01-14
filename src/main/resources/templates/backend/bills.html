@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>DashBoard</title>
+    <title>Bills</title>
 
     <link th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet">
@@ -27,7 +27,7 @@
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
                 <a th:replace="commons/logout::logout_btn"></a>
-                <h2>租赁管理系统</h2>
+                <h2>账单管理</h2>
             </div>
         </div>
         <div class="wrapper wrapper-content animated fadeInRight">
@@ -38,28 +38,34 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>场所名单</h5>
+                            <h5>账单列表</h5>
                         </div>
                         <div class="ibox-content">
 
                             <table class="footable table table-stripped toggle-arrow-tiny">
                                 <thead>
                                 <tr>
-                                    <th data-hide="all">场所名</th>
-                                    <th data-hide="all">商家数</th>
+                                    <th data-hide="all">表名</th>
+                                    <th data-hide="all">归属</th>
+                                    <th data-hide="all">度数</th>
+                                    <th data-hide="all">金额</th>
+                                    <th data-hide="all">状态</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="market:${markets}">
-                                    <td th:text="${market.name}">ID</td>
-                                    <td th:text="${market.tenant_number}">ID</td>
+                                <tr th:each="bill:${bills}">
+                                    <td th:text="${bill.eleMeter.name}">name</td>
+                                    <td th:text="${bill.tenant == null}?损耗:${bill.tenant.name}">name</td>
+                                    <td th:text="${bill.end_degree - bill.start_degree}">degree_total</td>
+                                    <td th:text="${bill.price}">price</td>
+                                    <td th:text="${bill.is_paid == 0}?未支付:已支付">is_paid</td>
                                     <td>
-                                        <a th:href="@{/market/}+${market.id}"><button class="btn btn-sm">编辑</button></a>
-                                        <a th:href="@{/tenants/}+${market.id}"><button class="btn btn-sm btn-primary">租户管理</button></a>
-                                        <a th:href="@{/elemeters/}+${market.id}"><button class="btn btn-sm btn-warning">电表管理</button></a>
-                                        <a th:href="@{/tenants/}+${market.id}"><button class="btn btn-sm btn-success">水表管理</button></a>
-                                        <a th:href="@{/tenants/}+${market.id}"><button class="btn btn-sm btn-danger">账单管理</button></a>
+                                        <a th:href="@{/market/}+${bill.id}"><button class="btn btn-sm">编辑</button></a>
+                                        <a th:href="@{/tenants/}+${bill.id}"><button class="btn btn-sm btn-primary">租户管理</button></a>
+                                        <a th:href="@{/elemeters/}+${bill.id}"><button class="btn btn-sm btn-warning">电表管理</button></a>
+                                        <a th:href="@{/tenants/}+${bill.id}"><button class="btn btn-sm btn-success">水表管理</button></a>
+                                        <a th:href="@{/tenants/}+${bill.id}"><button class="btn btn-sm btn-danger">账单管理</button></a>
                                     </td>
                                 </tr>
                                 </tbody>

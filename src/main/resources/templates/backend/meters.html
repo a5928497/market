@@ -66,6 +66,7 @@
                                         <button th:if="${meter.status!=0}" th:attr="meterId=${meter.id}"
                                                 class="btn btn-sm btn-info changeBTN">更换归属
                                         </button>
+                                        <a th:href="@{/elebills_m/}+${meter.id}" th:if="${meter.status!=0}"><button class="btn btn-sm">账单</button></a>
                                         <a th:href="${meter.status==0}?@{/runelemeter/}+${meter.id}:@{/stopelemeter/}+${meter.id}">
                                             <button th:class="${meter.status==0}?@{btn btn-sm btn-primary}:@{btn btn-sm btn-danger}"
                                                     th:text="${meter.status==0}?启用:停用">启停
