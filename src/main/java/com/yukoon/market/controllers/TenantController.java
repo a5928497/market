@@ -77,4 +77,6 @@ public class TenantController {
         tenant = tenantService.save(tenant);
         return "redirect:/tenant_details/" + tenant.getId();
     }
+
+    
 }

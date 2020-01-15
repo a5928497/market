@@ -45,6 +45,21 @@ public class Tenant {
     @Column(name = "PHONE_NUMBER")
     private String phone_number;
 
+    @Column(name = "DEPOSIT")
+    private Float deposit;
+
+    //缴款方式：0日缴 1月缴 2年缴
+    @Column(name = "RENT_STYLE")
+    private Integer rent_style;
+
+    //缴款周期 n 年/月/日一缴
+    @Column(name = "RENT_CYCLE")
+    private Integer rent_cycle;
+
+    //下次缴款日期
+    @Column(name = "NEXT_PAYMENT_DATE")
+    private String next_payment_date;
+
     //0=已撤场 1=营业中
     @Column(name = "STATUS")
     private Integer status;
