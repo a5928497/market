@@ -34,7 +34,7 @@ public class EleMeter {
 	@ManyToOne
 	private Market market;
 
-	@JoinColumn(nullable = true, name = "TENANT_ID")
+	@JoinColumn(name = "TENANT_ID")
 	@ManyToOne
 	private Tenant tenant;
 

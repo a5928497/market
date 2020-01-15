@@ -38,7 +38,7 @@ public class EleMeterController {
     private final static String BACK_URL =  "/elemeters/";
     //input页面元素
 
-    //获取Market对象
+    //获取EleMeter对象
     @ModelAttribute
     public void getMeter(@RequestParam(value = "id",required = false)Integer id, Map<String,Object> map) {
         //若为修改

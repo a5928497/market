@@ -27,6 +27,10 @@ public class WaterMeter {
 	@Column(name = "UPDATE_DATE")
 	private String update_date;
 
+	//0停用 1启用
+	@Column(name = "STATUS")
+	private Integer status;
+
 	@JoinColumn(name = "TENANT_ID")
 	@ManyToOne
 	private Tenant tenant;
@@ -34,4 +38,9 @@ public class WaterMeter {
 	@JoinColumn(name = "MARKET_ID")
 	@ManyToOne
 	private Market market;
+
+
+	//0表数异常 1成功更改客户 2生成新的欠款
+	@Transient
+	private Integer change_status;
 }
