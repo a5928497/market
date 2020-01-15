@@ -26,6 +26,7 @@ public class EleMeterController {
 
     //meters页面元素
     private final static String H2_TEXT = "电表管理";
+    private final static String ADD_BTN_TEXT = "添加电表";
     private final static String TOADD_URL = "/elemeter/";
     private final static String ADD_URL = "/elemeter";
     private final static String H5_TEXT = "电表";
@@ -34,7 +35,7 @@ public class EleMeterController {
     private final static String STOP_URL = "/stopelemeter/";
     private final static String MODELATTR = "eleMeter";
     private final static String CHANGE_TENANT_URL = "/eleowner";
-    private final static String DEGREE_UPLOAD_URL = "/uploaddegree";
+    private final static String DEGREE_UPLOAD_URL = "/uploaddegree_ele";
     private final static String BACK_URL =  "/elemeters/";
     //input页面元素
 
@@ -114,7 +115,7 @@ public class EleMeterController {
 
     //抄表读数计价
     @ResponseBody
-    @PutMapping("/uploaddegree")
+    @PutMapping("/uploaddegree_ele")
     public EleMeter uploadDegree(EleMeter eleMeter,Float degree_now) {
         if (degree_now <= eleMeter.getDegree()) {
             eleMeter.setChange_status(0);
@@ -130,6 +131,7 @@ public class EleMeterController {
         map.put("h2_text",H2_TEXT);map.put("toadd_url",TOADD_URL);map.put("h5_text",H5_TEXT);
         map.put("back_url",BACK_URL);map.put("run_url",RUN_URL);map.put("stop_url",STOP_URL);map.put("model_attr",MODELATTR);
         map.put("change_tenant_url",CHANGE_TENANT_URL);map.put("degree_upload_url",DEGREE_UPLOAD_URL);
+        map.put("add_btn_text",ADD_BTN_TEXT);
         return map;
     }
 
