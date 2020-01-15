@@ -1,12 +1,9 @@
 package com.yukoon.market.services;
 
-import com.yukoon.market.entities.EleBill;
 import com.yukoon.market.entities.WaterBill;
 import com.yukoon.market.entities.WaterMeter;
-import com.yukoon.market.repository.EleBillRepo;
 import com.yukoon.market.repository.WaterMeterRepo;
 import com.yukoon.market.repository.WaterBillRepo;
-import com.yukoon.market.repository.WaterMeterRepo;
 import com.yukoon.market.utils.DateFomatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +34,7 @@ public class WaterBillService {
         waterBill.setStart_date(waterMeter.getUpdate_date()).setEnd_date(DateFomatter.getDate())
                 .setStart_degree(degree_old).setEnd_degree(degree_now)
                 .setPrice(price).setIs_paid(0)
-                .setWaterMeter(waterMeter);
+                .setMeter(waterMeter);
         waterBill = waterBillRepo.saveAndFlush(waterBill);
         return waterBill;
     }

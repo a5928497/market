@@ -60,7 +60,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="bill:${bills}">
-                                    <td th:text="${bill.eleMeter.name}">name</td>
+                                    <td th:text="${bill.meter.name}">name</td>
                                     <td th:text="${bill.tenant == null}?损耗:${bill.tenant.name}">name</td>
                                     <td th:text="${bill.end_degree - bill.start_degree}">degree_total</td>
                                     <td th:text="${bill.price}">price</td>

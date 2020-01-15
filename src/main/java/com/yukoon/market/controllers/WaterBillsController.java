@@ -41,6 +41,7 @@ public class WaterBillsController {
     @GetMapping("/waterbills_m_all/{meterId}")
     public String findAllByMeterId(@PathVariable("meterId")Integer meterId, Map<String,Object> map) {
         int query_status = 0;
+        map = billsElementPackage(map);
         map.put("query_status",query_status);
         map.put("bills",waterBillService.findAllByMeterId(meterId));
         map.put("meter",waterMeterService.findById(meterId));
@@ -51,6 +52,7 @@ public class WaterBillsController {
     @GetMapping("/waterbills_m_unpaid/{meterId}")
     public String findUnpaidByMeterId(@PathVariable("meterId")Integer meterId, Map<String,Object> map) {
         int query_status = 1;
+        map = billsElementPackage(map);
         map.put("query_status",query_status);
         map.put("bills",waterBillService.findUnpaidByMeterId(meterId));
         map.put("meter",waterMeterService.findById(meterId));
@@ -61,6 +63,7 @@ public class WaterBillsController {
     @GetMapping("/waterbills_m_paid/{meterId}")
     public String findPaidByMeterId(@PathVariable("meterId")Integer meterId, Map<String,Object> map) {
         int query_status = 2;
+        map = billsElementPackage(map);
         map.put("query_status",query_status);
         map.put("bills",waterBillService.findpaidByMeterId(meterId));
         map.put("meter",waterMeterService.findById(meterId));

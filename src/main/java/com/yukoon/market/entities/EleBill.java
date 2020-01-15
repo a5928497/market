@@ -43,5 +43,5 @@ public class EleBill {
 
 	@JoinColumn(name = "ELEMETER_ID")
 	@ManyToOne
-	private EleMeter eleMeter;
+	private EleMeter meter;
 }

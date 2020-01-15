@@ -33,7 +33,7 @@ public class EleMeterController {
     private final static String BILLS_URL = "/elebills_m_unpaid/";
     private final static String RUN_URL = "/runelemeter/";
     private final static String STOP_URL = "/stopelemeter/";
-    private final static String MODELATTR = "eleMeter";
+    private final static String MODELATTR = "meter";
     private final static String CHANGE_TENANT_URL = "/eleowner";
     private final static String DEGREE_UPLOAD_URL = "/uploaddegree_ele";
     private final static String BACK_URL =  "/elemeters/";

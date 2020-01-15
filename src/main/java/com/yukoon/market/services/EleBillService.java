@@ -34,7 +34,7 @@ public class EleBillService {
         eleBill.setStart_date(eleMeter.getUpdate_date()).setEnd_date(DateFomatter.getDate())
                 .setStart_degree(degree_old).setEnd_degree(degree_now)
                 .setPrice(price).setIs_paid(0)
-                .setEleMeter(eleMeter);
+                .setMeter(eleMeter);
         eleBill = eleBillRepo.saveAndFlush(eleBill);
         return eleBill;
     }

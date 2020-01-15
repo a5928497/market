@@ -28,10 +28,24 @@ public class WaterMeterController {
     private final static String BILLS_URL = "/waterbills_m_unpaid/";
     private final static String RUN_URL = "/runwatermeter/";
     private final static String STOP_URL = "/stopwatermeter/";
-    private final static String MODELATTR = "waterMeter";
+    private final static String MODELATTR = "meter";
     private final static String CHANGE_TENANT_URL = "/waterowner";
     private final static String DEGREE_UPLOAD_URL = "/uploaddegree_water";
     private final static String BACK_URL =  "/watermeters/";
+
+    private Map<String,Object> metersElementPackage(Map<String,Object> map) {
+        map.put("h2_text",H2_TEXT);map.put("toadd_url",TOADD_URL);map.put("h5_text",H5_TEXT);
+        map.put("back_url",BACK_URL);map.put("run_url",RUN_URL);map.put("stop_url",STOP_URL);map.put("model_attr",MODELATTR);
+        map.put("change_tenant_url",CHANGE_TENANT_URL);map.put("degree_upload_url",DEGREE_UPLOAD_URL);
+        map.put("add_btn_text",ADD_BTN_TEXT);map.put("bills_url",BILLS_URL);
+        return map;
+    }
+
+    private Map<String,Object> inputElementPackage(Map<String,Object> map) {
+        map.put("h5_text",H5_TEXT);map.put("add_url",ADD_URL);map.put("model_attr",MODELATTR);
+        map.put("bills_url",BILLS_URL);
+        return map;
+    }
 
     //获取WaterMeter对象
     @ModelAttribute
@@ -119,20 +133,6 @@ public class WaterMeterController {
         }
         //change_status=0表数异常 1成功更改客户 2生成新的欠款
         return waterMeter;
-    }
-
-    private Map<String,Object> metersElementPackage(Map<String,Object> map) {
-        map.put("h2_text",H2_TEXT);map.put("toadd_url",TOADD_URL);map.put("h5_text",H5_TEXT);
-        map.put("back_url",BACK_URL);map.put("run_url",RUN_URL);map.put("stop_url",STOP_URL);map.put("model_attr",MODELATTR);
-        map.put("change_tenant_url",CHANGE_TENANT_URL);map.put("degree_upload_url",DEGREE_UPLOAD_URL);
-        map.put("add_btn_text",ADD_BTN_TEXT);map.put("bills_url",BILLS_URL);
-        return map;
-    }
-
-    private Map<String,Object> inputElementPackage(Map<String,Object> map) {
-        map.put("h5_text",H5_TEXT);map.put("add_url",ADD_URL);map.put("model_attr",MODELATTR);
-        map.put("bills_url",BILLS_URL);
-        return map;
     }
 
 }

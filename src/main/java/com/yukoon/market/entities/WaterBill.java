@@ -43,5 +43,5 @@ public class WaterBill {
 
 	@JoinColumn(name = "WATERMETER_ID")
 	@ManyToOne
-	private WaterMeter waterMeter;
+	private WaterMeter meter;
 }
