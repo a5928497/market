@@ -131,7 +131,7 @@ public class EleMeterController {
         map.put("h2_text",H2_TEXT);map.put("toadd_url",TOADD_URL);map.put("h5_text",H5_TEXT);
         map.put("back_url",BACK_URL);map.put("run_url",RUN_URL);map.put("stop_url",STOP_URL);map.put("model_attr",MODELATTR);
         map.put("change_tenant_url",CHANGE_TENANT_URL);map.put("degree_upload_url",DEGREE_UPLOAD_URL);
-        map.put("add_btn_text",ADD_BTN_TEXT);
+        map.put("add_btn_text",ADD_BTN_TEXT);map.put("bills_url",BILLS_URL);
         return map;
     }
 

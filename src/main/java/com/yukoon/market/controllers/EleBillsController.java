@@ -29,6 +29,7 @@ public class EleBillsController {
         map.put("unpaid_bills_url",UNPAID_BILLS_URL);
         map.put("paid_bills_url",PAID_BILLS_URL);
         map.put("back_url",BACK_URL);
+        map.put("details_url",DETAILS_URL);
         return map;
     }
 
