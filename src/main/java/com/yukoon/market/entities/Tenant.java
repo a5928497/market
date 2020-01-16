@@ -48,6 +48,10 @@ public class Tenant {
     @Column(name = "DEPOSIT")
     private Float deposit;
 
+    //是否纯收租金
+    @Column(name = "IS_PURE_INCOME")
+    private Integer is_pure_income;
+
     //缴款方式：0日缴 1月缴 2年缴
     @Column(name = "RENT_STYLE")
     private Integer rent_style;
