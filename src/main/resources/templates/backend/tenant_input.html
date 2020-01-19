@@ -79,6 +79,15 @@
                                                th:value="${tenant!=null}?${tenant.next_payment_date}" class="form-control">
                                     </div>
                                 </div>
+                                <div class="form-group"><label class="col-sm-2 control-label">是否纯收租</label>
+                                    <label class="col-sm-10">
+                                        <input class="is_pure_income" type="radio" name="is_pure_income" value="0" checked="checked" >
+                                        否</label>
+                                    <label class="col-sm-2 control-label"></label>
+                                    <label class="col-sm-10">
+                                        <input class="is_pure_income" type="radio" name="is_pure_income" value="1" >
+                                        即管理费、水电费等一切费用由租户自理</label>
+                                </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">用电计价</label>
                                     <div class="col-sm-10"><input id="ele_price" name="ele_price" type="text" th:value="${tenant!=null}?${tenant.ele_price}:0" class="form-control"></div>
                                 </div>
@@ -129,14 +138,6 @@
     <!-- Mainly scripts -->
     <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
-<script>
-    $backBTN = $(".backBTN");
-    $backBTN.click(function () {
-        var uri = $backBTN.attr("back_uri");
-        window.location.replace(uri);
-        return false;
-    })
-</script>
+    <script type="text/javascript" th:src="@{/js/backend/tenant_input.js}"></script>
 </body>
-
 </html>
