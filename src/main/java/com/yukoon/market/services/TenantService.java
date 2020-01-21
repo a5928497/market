@@ -17,8 +17,11 @@ public class TenantService {
         return tenantRepo.findAllByMarketId(marketId);
     }
 
-    //添加商家
+    //保存商家
     public Tenant save(Tenant tenant) {
+        if (tenant.getIs_pure_income() == 1) {
+
+        }
         return tenantRepo.saveAndFlush(tenant);
     }
 

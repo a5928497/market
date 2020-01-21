@@ -48,7 +48,7 @@ public class Tenant {
     @Column(name = "DEPOSIT")
     private Float deposit;
 
-    //是否纯收租金
+    //是否纯收租金 0非纯收 1纯收
     @Column(name = "IS_PURE_INCOME")
     private Integer is_pure_income;
 
