@@ -4,7 +4,21 @@ $(function () {
     $payment_date = $("#next_payment_date");
     $rent_style = $("#rent_style");
     $rent_cycle = $("#rent_cycle");
+    $submitBTN = $(".submitBTN");
 
+    //初始submit不可用
+    $submitBTN.attr("disabled","disabled");
+
+    //检查必填项是否都已填写，若是使保存按钮可用
+    $("input,select").change(function () {
+        var result = not_null($(".not_null"));
+        if (result == true) {
+            $submitBTN.removeAttr("disabled");
+        }
+        else {
+            $submitBTN.attr("disabled","disabled");
+        }
+    });
     //租赁方式改变
     $rent_style.change(function () {
         $rent_cycle.empty();
@@ -71,5 +85,16 @@ $(function () {
         var patten = "^\\d{4}-\\d{1,2}-\\d{1,2}";
         var result = string.match(patten);
         return !(null == result);
+    }
+
+    function not_null($object) {
+        var resule = true;
+        $object.each(function () {
+            console.log($(this).val())
+            if ($(this).val() == "") {
+                resule = false;
+            }
+        });
+        return resule;
     }
 })
