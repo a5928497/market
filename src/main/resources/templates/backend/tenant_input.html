@@ -58,7 +58,7 @@
                                     <div class="col-sm-10"><input id="deposit" name="deposit" type="text" th:value="${tenant!=null}?${tenant.deposit}" class="form-control"></div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">缴款方式</label>
-                                    <div class="col-sm-10"><select class="form-control m-b" name="rent_style">
+                                    <div class="col-sm-10"><select class="form-control m-b" name="rent_style" id="rent_style">
                                         <tr><option value="0" th:selected="${tenant!=null} and ${tenant.rent_style == 0}?selected">日缴</option></tr>
                                         <tr><option value="1" th:selected="${tenant!=null} and ${tenant.rent_style == 1}?selected">月缴</option></tr>
                                         <tr><option value="2" th:selected="${tenant!=null} and ${tenant.rent_style == 2}?selected">年缴</option></tr>
@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">缴款周期</label>
-                                    <div class="col-sm-10"><select class="form-control m-b" name="rent_cycle" >
+                                    <div class="col-sm-10"><select class="form-control m-b" name="rent_cycle" id="rent_cycle">
                                         <tr th:each="i:${#numbers.sequence(1,20)}">
                                             <option th:value="${i}" th:text="${i}"></option>
                                         </tr>
@@ -139,5 +139,6 @@
     <script type="text/javascript" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/backend/tenant_input.js}"></script>
+    <script type="text/javascript" th:src="@{/js/commons/backend_commons.js}"></script>
 </body>
 </html>

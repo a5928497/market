@@ -20,7 +20,8 @@ public class TenantService {
     //保存商家
     public Tenant save(Tenant tenant) {
         if (tenant.getIs_pure_income() == 1) {
-
+            tenant.setManagement_fees(0f).setOther_fees(0f)
+                    .setWater_price(0f).setEle_price(0f);
         }
         return tenantRepo.saveAndFlush(tenant);
     }
