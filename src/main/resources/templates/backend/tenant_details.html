@@ -59,13 +59,29 @@
                                     </tbody>
                                     <thead>
                                     <tr>
+                                        <th colspan="4">使用押金</th>
+                                        <th colspan="4">缴款方式</th>
+                                        <th colspan="4">缴款周期</th>
+                                        <th colspan="4">下次缴款日期</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th colspan="4" th:text="${tenant.deposit}"></th>
+                                        <td colspan="4"th:text="${tenant.rent_style_string}+@{缴}"></td>
+                                        <td colspan="4"th:text="${tenant.rent_cycle}+${tenant.rent_style_string}+@{/缴}"></td>
+                                        <td colspan="4"th:text="${tenant.next_payment_date}"></td>
+                                    </tr>
+                                    </tbody>
+                                    <thead th:if="${tenant.is_pure_income!=1}">
+                                    <tr>
                                         <th colspan="4">用电计价</th>
                                         <th colspan="4">用水计价</th>
                                         <th colspan="4">管理费用</th>
                                         <th colspan="4">其他费用</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody th:if="${tenant.is_pure_income!=1}">
                                     <tr>
                                         <td colspan="4" th:text="${tenant.ele_price}"></td>
                                         <td colspan="4" th:text="${tenant.water_price}"></td>

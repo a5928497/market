@@ -68,6 +68,9 @@ public class Tenant {
     @Column(name = "STATUS")
     private Integer status;
 
+    @Transient
+    private String rent_style_string;
+
     @Column(name = "CHANGE_DATE",columnDefinition = "text")
     private String change_date;
 

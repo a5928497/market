@@ -28,6 +28,25 @@ public class TenantService {
 
     //通过id查找商家
     public Tenant findById(Integer id) {
-        return tenantRepo.findOne(id);
+        Tenant tenant = tenantRepo.findOne(id);
+        tenant = decorate(tenant);
+        return tenant;
+    }
+
+    //修饰租户描述文字
+    private Tenant decorate(Tenant tenant) {
+        //修饰缴款方式
+        switch (tenant.getRent_style()) {
+            case 0:
+                tenant.setRent_style_string("日");
+                break;
+            case 1:
+                tenant.setRent_style_string("月");
+                break;
+            case 2:
+                tenant.setRent_style_string("年");
+                break;
+        }
+        return tenant;
     }
 }
