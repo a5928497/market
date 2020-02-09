@@ -1,10 +1,12 @@
 package com.yukoon.market.services;
 
 import com.yukoon.market.entities.Tenant;
+import com.yukoon.market.entities.TenantTotalBill;
 import com.yukoon.market.repository.TenantRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,6 +33,16 @@ public class TenantService {
         Tenant tenant = tenantRepo.findOne(id);
         tenant = decorate(tenant);
         return tenant;
+    }
+
+    //查询指定id市场下所有商家未缴账单
+    public List<TenantTotalBill> findAllTenantTotalBills(Integer market_id) {
+        List<TenantTotalBill> bills = new ArrayList<>();
+        List<Tenant> tenants = findAllByMarketId(market_id);
+        for (Tenant tenant:tenants) {
+//            List<>
+        }
+        return bills;
     }
 
     //修饰租户描述文字

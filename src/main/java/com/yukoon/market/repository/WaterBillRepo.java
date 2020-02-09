@@ -20,4 +20,16 @@ public interface WaterBillRepo extends JpaRepository<WaterBill,Integer> {
     //查询某一水表下所有已付账单
     @Query("select w from WaterBill w where w.meter.id = :meterId and w.is_paid = 1")
     public List<WaterBill> findpaidByWaterMeterId(@Param("meterId") Integer meterId);
+
+    //查询某一租户下所有未付账单
+    @Query("select w from WaterBill where w.tenant.id = :tenantId and w.is_paid = 0")
+    public List<WaterBill> findUnpaidByTenantId(@Param("tenantId")Integer tenantId);
+
+    //查询某一租户下所有已付账单
+    @Query("select w from WaterBill where w.tenant.id = :tenantId and w.is_paid = 1")
+    public List<WaterBill> findPaidByTenantId(@Param("tenantId")Integer tenantId);
+
+    //查询某一租户下所有账单
+    @Query("select w from WaterBill where w.tenant.id = :tenantId")
+    public List<WaterBill> findAllByTenantId(@Param("tenantId")Integer tenantId);
 }

@@ -1,7 +1,6 @@
 package com.yukoon.market.services;
 
 import com.yukoon.market.entities.Market;
-import com.yukoon.market.entities.Tenant;
 import com.yukoon.market.repository.MarketRepo;
 import com.yukoon.market.repository.TenantRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +34,12 @@ public class MarketService {
     public Market findById(Integer id) {
         return marketRepo.findOne(id);
     }
+
     //查询指定id市场下所有商家数
     public List<Market> findAllTenantByMarket() {
         List<Market> markets = findAll();
         //查询每个市场下商家数
-        for (Market market:markets) {
+        for (Market market : markets) {
             market.setTenant_number(tenantRepo.findAllByMarketId(market.getId()).size());
         }
         return markets;
